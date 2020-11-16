@@ -1,4 +1,4 @@
-package fr.cesi;
+package fr.cesi.ihm;
 
 public class Main {
     public static void main(String[] args) {
