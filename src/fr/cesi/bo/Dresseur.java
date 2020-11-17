@@ -6,18 +6,31 @@ package fr.cesi.bo;
  * @author Caliendo Julien
  */
 public class Dresseur {
+    private int id;
     private String nom;
     private String prenom;
 
-    /**
-     * Le constructeur
-     *
-     * @param nom : le nom de famille
-     * @param prenom : le prénom
-     */
+    public Dresseur(int id, String nom, String prenom) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+
     public Dresseur(String nom, String prenom) {
         this.nom = nom;
         this.prenom = prenom;
+    }
+
+    public Dresseur() {
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNom() {
@@ -34,5 +47,14 @@ public class Dresseur {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    @Override
+    public String toString() {
+        return "Dresseur{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                '}';
     }
 }

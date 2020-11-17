@@ -11,69 +11,134 @@
     <collation id="4" parent="1" name="NOCASE"/>
     <collation id="5" parent="1" name="RTRIM"/>
     <table id="6" parent="2" name="attaque"/>
-    <table id="7" parent="2" name="sqlite_master">
+    <table id="7" parent="2" name="dresseur"/>
+    <table id="8" parent="2" name="pokemon"/>
+    <table id="9" parent="2" name="sqlite_master">
       <System>1</System>
     </table>
-    <table id="8" parent="2" name="sqlite_sequence">
+    <table id="10" parent="2" name="sqlite_sequence">
       <System>1</System>
     </table>
-    <table id="9" parent="2" name="voiture"/>
-    <column id="10" parent="6" name="id">
+    <column id="11" parent="6" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="11" parent="6" name="nom">
+    <column id="12" parent="6" name="nom">
       <Position>2</Position>
       <DataType>VARCHAR(25)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="12" parent="6" name="force">
+    <column id="13" parent="6" name="force">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="13" parent="6" name="attaque_pk">
+    <key id="14" parent="6" name="attaque_pk">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="14" parent="7" name="type">
+    <column id="15" parent="7" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="16" parent="7" name="nom">
+      <Position>2</Position>
+      <DataType>varchar(25)|0s</DataType>
+    </column>
+    <column id="17" parent="7" name="prenom">
+      <Position>3</Position>
+      <DataType>varchar(25)|0s</DataType>
+    </column>
+    <key id="18" parent="7" name="dresseur_pk">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="19" parent="8" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="20" parent="8" name="identifiant">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+    </column>
+    <column id="21" parent="8" name="nom">
+      <Position>3</Position>
+      <DataType>varchar(25)|0s</DataType>
+    </column>
+    <column id="22" parent="8" name="poids">
+      <Position>4</Position>
+      <DataType>float|0s</DataType>
+    </column>
+    <column id="23" parent="8" name="taille">
+      <Position>5</Position>
+      <DataType>float|0s</DataType>
+    </column>
+    <column id="24" parent="8" name="design">
+      <Position>6</Position>
+      <DataType>varchar(100)|0s</DataType>
+    </column>
+    <column id="25" parent="8" name="attaque01">
+      <Position>7</Position>
+      <DataType>integer|0s</DataType>
+    </column>
+    <column id="26" parent="8" name="attaque02">
+      <Position>8</Position>
+      <DataType>integer|0s</DataType>
+    </column>
+    <column id="27" parent="8" name="dresseur">
+      <Position>9</Position>
+      <DataType>integer|0s</DataType>
+    </column>
+    <key id="28" parent="8" name="pokemon_pk">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="29" parent="8">
+      <ColNames>attaque01</ColNames>
+      <RefTableName>attaque</RefTableName>
+      <RefKeyName>attaque_pk</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="30" parent="8">
+      <ColNames>attaque02</ColNames>
+      <RefTableName>attaque</RefTableName>
+      <RefKeyName>attaque_pk</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="31" parent="8">
+      <ColNames>dresseur</ColNames>
+      <RefTableName>dresseur</RefTableName>
+      <RefKeyName>dresseur_pk</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="32" parent="9" name="type">
       <Position>1</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="15" parent="7" name="name">
+    <column id="33" parent="9" name="name">
       <Position>2</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="16" parent="7" name="tbl_name">
+    <column id="34" parent="9" name="tbl_name">
       <Position>3</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="17" parent="7" name="rootpage">
+    <column id="35" parent="9" name="rootpage">
       <Position>4</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="18" parent="7" name="sql">
+    <column id="36" parent="9" name="sql">
       <Position>5</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="19" parent="8" name="name">
+    <column id="37" parent="10" name="name">
       <Position>1</Position>
     </column>
-    <column id="20" parent="8" name="seq">
+    <column id="38" parent="10" name="seq">
       <Position>2</Position>
-    </column>
-    <column id="21" parent="9" name="marque">
-      <Position>1</Position>
-      <DataType>varchar(25)|0s</DataType>
-    </column>
-    <column id="22" parent="9" name="modele">
-      <Position>2</Position>
-      <DataType>varchar(25)|0s</DataType>
-    </column>
-    <column id="23" parent="9" name="col">
-      <Position>3</Position>
-      <DataType>varchar(25)|0s</DataType>
     </column>
   </database-model>
 </dataSource>

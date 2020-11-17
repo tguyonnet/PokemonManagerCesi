@@ -16,6 +16,15 @@ public class Attaque {
         this.force = force;
     }
 
+    public Attaque(String nom, int force) {
+        this.nom = nom;
+        this.force = force;
+    }
+
+    public Attaque() {
+
+    }
+
     public int getId() {
         return id;
     }

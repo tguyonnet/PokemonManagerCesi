@@ -2,6 +2,7 @@ package fr.cesi.bo;
 
 public class Pokemon {
     private int id;
+    private int identifiant;
     private String nom;
     private float poids;
     private float taille;
@@ -9,6 +10,18 @@ public class Pokemon {
     private Attaque attaque01;
     private Attaque attaque02;
     private Dresseur dresseur;
+
+    public Pokemon(int id, int identifiant, String nom, float poids, float taille, String design, Attaque attaque01, Attaque attaque02, Dresseur dresseur) {
+        this.id = id;
+        this.identifiant = identifiant;
+        this.nom = nom;
+        this.poids = poids;
+        this.taille = taille;
+        this.design = design;
+        this.attaque01 = attaque01;
+        this.attaque02 = attaque02;
+        this.dresseur = dresseur;
+    }
 
     public Pokemon(int id, String nom, float poids, float taille, Attaque attaque01, Attaque attaque02, Dresseur dresseur) {
         this.id = id;
@@ -19,6 +32,26 @@ public class Pokemon {
         this.attaque01 = attaque01;
         this.attaque02 = attaque02;
         this.dresseur = dresseur;
+    }
+
+    public Pokemon(int identifiant, String nom, float poids, float taille) {
+        this.identifiant = identifiant;
+        this.nom = nom;
+        this.poids = poids;
+        this.taille = taille;
+        this.design = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + id + ".png";
+    }
+
+    public Pokemon() {
+
+    }
+
+    public int getIdentifiant() {
+        return identifiant;
+    }
+
+    public void setIdentifiant(int identifiant) {
+        this.identifiant = identifiant;
     }
 
     public int getId() {
@@ -83,5 +116,20 @@ public class Pokemon {
 
     public void setDresseur(Dresseur dresseur) {
         this.dresseur = dresseur;
+    }
+
+    @Override
+    public String toString() {
+        return "Pokemon{" +
+                "id=" + id +
+                ", identifiant=" + identifiant +
+                ", nom='" + nom + '\'' +
+                ", poids=" + poids +
+                ", taille=" + taille +
+                ", design='" + design + '\'' +
+                ", attaque01=" + attaque01 +
+                ", attaque02=" + attaque02 +
+                ", dresseur=" + dresseur +
+                '}';
     }
 }

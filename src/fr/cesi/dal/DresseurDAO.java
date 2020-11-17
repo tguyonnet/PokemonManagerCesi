@@ -7,56 +7,56 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AttaqueDAO implements DAO<Attaque> {
-    final static String SQL_INSERT = "INSERT INTO attaque (nom, force) values(?, ?)";
-    final static String SQL_SELECT_ALL = "SELECT id, nom, force FROM attaque";
-    final static String SQL_SELECT_1 = "SELECT id, nom, force FROM attaque WHERE id=?";
-    final static String SQL_DELETE = "DELETE FROM attaque WHERE id=?";
-    final static String SQL_UPDATE = "UPDATE attaque SET nom=?, force=? WHERE id=?";
+public class DresseurDAO implements DAO<Dresseur> {
+
+    final static String SQL_INSERT = "INSERT INTO dresseur (nom, prenom) values(?, ?)";
+    final static String SQL_SELECT_ALL = "SELECT id, nom, prenom FROM dresseur";
+    final static String SQL_SELECT_1 = "SELECT id, nom, prenom FROM dresseur WHERE id=?";
+    final static String SQL_DELETE = "DELETE FROM dresseur WHERE id=?";
+    final static String SQL_UPDATE = "UPDATE dresseur SET nom=?, prenom=? WHERE id=?";
 
     @Override
-    public Attaque get(int id) {
-        Attaque a = new Attaque();
+    public Dresseur get(int id) {
+        Dresseur d = new Dresseur();
         try (Connection cnx = Connexion.seConnecter(); PreparedStatement pstmt = cnx.prepareStatement(SQL_SELECT_1)) {
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                a.setId(rs.getInt("id"));
-                a.setNom(rs.getString("nom"));
-                a.setForce(rs.getInt("force"));
+                d.setId(rs.getInt("id"));
+                d.setNom(rs.getString("nom"));
+                d.setPrenom(rs.getString("prenom"));
             }
         } catch (SQLException e) {
             System.err.println("Erreur SQL : " + e.getMessage());
         }
-        return a;
+        return d;
     }
 
     @Override
-    public List<Attaque> getAll() {
-        // Retourne la liste des Pokémons en base
-        List<Attaque> listeDesAttaques = new ArrayList<Attaque>();
+    public List<Dresseur> getAll() {
+        List<Dresseur> listeDesDresseurs = new ArrayList<Dresseur>();
         try (Connection cnx = Connexion.seConnecter(); Statement stmt = cnx.createStatement()) {
             ResultSet rs = stmt.executeQuery(SQL_SELECT_ALL);
             while (rs.next()) {
-                Attaque attaqueCourante = new Attaque(
+                Dresseur dresseurCourant = new Dresseur(
                         rs.getInt("id"),
                         rs.getString("nom"),
-                        rs.getInt("force")
+                        rs.getString("prenom")
                 );
-                listeDesAttaques.add(attaqueCourante);
+                listeDesDresseurs.add(dresseurCourant);
             }
         } catch (SQLException e) {
             System.err.println("Erreur SQL : " + e.getMessage());
         }
-        return listeDesAttaques;
+        return listeDesDresseurs;
     }
 
     @Override
-    public void update(Attaque attaqueAmodifier) {
+    public void update(Dresseur dresseur) {
         try (Connection cnx = Connexion.seConnecter(); PreparedStatement pstmt = cnx.prepareStatement(SQL_UPDATE)) {
-            pstmt.setString(1, attaqueAmodifier.getNom());
-            pstmt.setInt(2, attaqueAmodifier.getForce());
-            pstmt.setInt(3, attaqueAmodifier.getId());
+            pstmt.setString(1, dresseur.getNom());
+            pstmt.setString(2, dresseur.getPrenom());
+            pstmt.setInt(3, dresseur.getId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erreur SQL : " + e.getMessage());
@@ -64,11 +64,11 @@ public class AttaqueDAO implements DAO<Attaque> {
     }
 
     @Override
-    public void delete(int idDeLattaqueASupprimmer) {
+    public void delete(int id) {
         try (Connection cnx = Connexion.seConnecter();
              PreparedStatement pstmt = cnx.prepareStatement(SQL_DELETE)
         ) {
-            pstmt.setInt(1, idDeLattaqueASupprimmer);
+            pstmt.setInt(1, id);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Erreur SQL : " + e.getMessage());
@@ -76,13 +76,13 @@ public class AttaqueDAO implements DAO<Attaque> {
     }
 
     @Override
-    public Attaque insert(Attaque attaqueAinserer) {
+    public Dresseur insert(Dresseur dresseur) {
         int idGenere = 0;
         try (Connection cnx = Connexion.seConnecter();
              PreparedStatement pstmt = cnx.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS)
         ) {
-            pstmt.setString(1, attaqueAinserer.getNom());
-            pstmt.setInt(2, attaqueAinserer.getForce());
+            pstmt.setString(1, dresseur.getNom());
+            pstmt.setString(2, dresseur.getPrenom());
             pstmt.executeUpdate();
             ResultSet rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
@@ -91,7 +91,7 @@ public class AttaqueDAO implements DAO<Attaque> {
         } catch (SQLException e) {
             System.err.println("Erreur SQL : " + e.getMessage());
         }
-        attaqueAinserer.setId(idGenere);
-        return attaqueAinserer;
+        dresseur.setId(idGenere);
+        return dresseur;
     }
 }
