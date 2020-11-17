@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("## Pokemon Manager ##");
         AttaqueDAO adao = new AttaqueDAO();
-        List<Attaque> listeAttaque = adao.get();
+        List<Attaque> listeAttaque = adao.getAll();
         System.out.println(listeAttaque);
     }
 }
