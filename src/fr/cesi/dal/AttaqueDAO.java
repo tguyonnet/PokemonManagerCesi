@@ -36,6 +36,14 @@ public class AttaqueDAO implements DAO<Attaque> {
 
     @Override
     public void update(Attaque attaqueAmodifier) {
+        try (Connection cnx = Connexion.seConnecter(); PreparedStatement pstmt = cnx.prepareStatement(SQL_UPDATE)) {
+            pstmt.setString(1, attaqueAmodifier.getNom());
+            pstmt.setInt(2, attaqueAmodifier.getForce());
+            pstmt.setInt(3, attaqueAmodifier.getId());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Erreur SQL : " + e.getMessage());
+        }
     }
 
     @Override
